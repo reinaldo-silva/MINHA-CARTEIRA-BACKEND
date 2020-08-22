@@ -1,0 +1,16 @@
+{
+  "name": "MINHA_CARTEIRA_BACKEND",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Reinaldo Silva <reinaldo.silva.jr@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
