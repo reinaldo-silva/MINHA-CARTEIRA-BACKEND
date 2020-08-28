@@ -1,5 +1,5 @@
 {
-  "name": "MINHA_CARTEIRA_BACKEND",
+  "name": "minha-carteira-backend",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Reinaldo Silva <reinaldo.silva.jr@outlook.com>",
@@ -8,7 +8,7 @@
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon ./src/infra/http/server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
