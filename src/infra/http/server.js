@@ -2,9 +2,10 @@ const express = require("express");
 
 const server = express();
 
-server.get("/", function (req, res) {
-  res.send("O pai ta on");
-});
+const routes = require("./routes");
+
+server.use(express.json());
+server.use(routes);
 
 server.listen(3333, function () {
   console.log("O PAI TÁ ON!");
