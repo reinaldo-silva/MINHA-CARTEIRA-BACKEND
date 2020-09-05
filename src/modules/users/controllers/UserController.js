@@ -1,3 +1,5 @@
+const SingUpService = require("../services/SingUpServices");
+
 class UserController {
   async create(req, res) {
     const { name, email, password, password_confirm } = req.body;
@@ -12,7 +14,13 @@ class UserController {
     if (password !== password_confirm)
       return res.json({ message: "password not match" });
 
-    return res.json("Agora vai!");
+    const user = await SingUpService.execute({
+      name,
+      email,
+      password,
+    });
+
+    return res.json(user);
   }
 }
 

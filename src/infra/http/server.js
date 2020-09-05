@@ -8,5 +8,5 @@ server.use(express.json());
 server.use(routes);
 
 server.listen(3333, function () {
-  console.log("O PAI TÁ ON!");
+  console.log("SERVER IS RUNNING ON 3333 PORT!");
 });
