@@ -13,6 +13,16 @@ class UsersRepository {
 
     return user;
   }
+
+  async findByEmail(email) {
+    const user = await mongo
+      .collection("users")
+      .findOne({ email })
+      .then((result) => {
+        return result;
+      });
+    return user;
+  }
 }
 
 module.exports = new UsersRepository();
