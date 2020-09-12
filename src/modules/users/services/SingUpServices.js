@@ -1,13 +1,14 @@
-const UsersRepository = require("../repositories/UsersRepository");
+const UsersRepository = require('../repositories/UsersRepository');
 
 class SingUpServices {
+  // eslint-disable-next-line class-methods-use-this
   async execute(data) {
     const { name, email, password } = data;
 
     const emailAlreadyUsed = await UsersRepository.findByEmail(email);
 
     if (emailAlreadyUsed)
-      return { error: "email not avaliable. Choise another!" };
+      return { error: 'email not avaliable. Choise another!' };
 
     const user = await UsersRepository.add({ name, email, password });
 

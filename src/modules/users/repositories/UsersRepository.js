@@ -1,11 +1,12 @@
-const mongo = require("../../../infra/database/mongoose");
+const mongo = require('../../../infra/database/mongoose');
 
 class UsersRepository {
+  // eslint-disable-next-line class-methods-use-this
   async add(data) {
     const user = await mongo
-      .collection("users")
+      .collection('users')
       .insertOne(data)
-      .then((result) => {
+      .then(result => {
         return result;
       });
 
@@ -14,11 +15,12 @@ class UsersRepository {
     return user;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async findByEmail(email) {
     const user = await mongo
-      .collection("users")
+      .collection('users')
       .findOne({ email })
-      .then((result) => {
+      .then(result => {
         return result;
       });
     return user;
