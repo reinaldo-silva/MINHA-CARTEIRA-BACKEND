@@ -27,4 +27,4 @@ class UsersRepository {
   }
 }
 
-module.exports = new UsersRepository();
+module.exports = UsersRepository;

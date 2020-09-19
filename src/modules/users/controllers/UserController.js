@@ -1,20 +1,24 @@
 const SingUpService = require('../services/SingUpServices');
+const UsersRepository = require('../repositories/UsersRepository');
 
 class UserController {
   async create(req, res) {
-    const { name, email, password, passwordConfirm } = req.body;
+    const { name, email, password, password_confirm } = req.body;
 
     if (!name) return res.json({ message: 'name is required' });
     if (!email) return res.json({ message: 'email is required' });
 
     if (!password) return res.json({ message: 'password is required' });
-    if (!passwordConfirm)
+    if (!password_confirm)
       return res.json({ message: 'password_confirm is required' });
 
-    if (password !== passwordConfirm)
+    if (password !== password_confirm)
       return res.json({ message: 'password not match' });
 
-    const user = await SingUpService.execute({
+    const usersRepository = new UsersRepository();
+    const singUpServices = new SingUpService(usersRepository);
+
+    const user = await singUpServices.execute({
       name,
       email,
       password,
