@@ -12,7 +12,17 @@ class UsersRepository {
 
     delete user.ops[0].password;
 
-    return user;
+    const userFormat = {
+      // eslint-disable-next-line
+      id: user.ops[0]._id,
+      ...user.ops[0],
+    };
+
+    delete userFormat.password;
+    // eslint-disable-next-line
+    delete userFormat._id;
+
+    return userFormat;
   }
 
   // eslint-disable-next-line class-methods-use-this

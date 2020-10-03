@@ -1,5 +1,6 @@
 const SingUpService = require('../services/SingUpServices');
 const UsersRepository = require('../repositories/UsersRepository');
+const BcryptProvider = require('../providers/HashProvider/implementations/Bcrypt');
 
 class UserController {
   async create(req, res) {
@@ -16,7 +17,8 @@ class UserController {
       return res.json({ message: 'password not match' });
 
     const usersRepository = new UsersRepository();
-    const singUpServices = new SingUpService(usersRepository);
+    const bcryptProvider = new BcryptProvider();
+    const singUpServices = new SingUpService(usersRepository, bcryptProvider);
 
     const user = await singUpServices.execute({
       name,
