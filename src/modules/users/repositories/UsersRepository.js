@@ -12,15 +12,15 @@ class UsersRepository {
 
     delete user.ops[0].password;
 
-    const userFormat = {
+    const userFormatted = {
       id: user.ops[0]._id,
       ...user.ops[0],
     };
 
-    delete userFormat.password;
-    delete userFormat._id;
+    delete userFormatted.password;
+    delete userFormatted._id;
 
-    return userFormat;
+    return userFormatted;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -31,10 +31,13 @@ class UsersRepository {
       .then(result => {
         return result;
       });
-    return {
-      id: user.ops[0]._id,
+    const userFormatted = {
+      id: user._id,
       ...user,
     };
+
+    delete userFormatted._id;
+    return userFormatted;
   }
 }
 

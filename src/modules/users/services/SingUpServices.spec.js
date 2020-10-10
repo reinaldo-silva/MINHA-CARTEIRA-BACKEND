@@ -18,4 +18,20 @@ describe('SingUpService', () => {
 
     expect(user).toHaveProperty('id');
   });
+
+  test('should be error message if email already used', async () => {
+    const data = {
+      name: 'any_user',
+      email: 'exist@email.com',
+      password: 'any_password',
+    };
+
+    const userRepositopryFake = new UsersRepositoryFake();
+    const hashProvider = new HashProvider();
+    const singUpServices = new SingUpService(userRepositopryFake, hashProvider);
+
+    const user = await singUpServices.execute(data);
+
+    expect(user).toHaveProperty('error');
+  });
 });
