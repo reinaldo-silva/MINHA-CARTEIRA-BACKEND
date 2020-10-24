@@ -1,4 +1,6 @@
-class SingIpServices {
+// const { sign } = require('jsonwebtoken');
+
+class SignInService {
   constructor(usersRepository, cryptProvider) {
     this.usersRepository = usersRepository;
     this.cryptProvider = cryptProvider;
@@ -19,8 +21,10 @@ class SingIpServices {
     );
 
     if (!passwordMatch) {
-      return { error: 'Password does not match' };
+      return { error: "password doesn't match" };
     }
+
+    // Vamos Gerar o Token de autenticação aqui!
 
     delete user.password;
 
@@ -28,4 +32,4 @@ class SingIpServices {
   }
 }
 
-module.exports = SingIpServices;
+module.exports = SignInService;

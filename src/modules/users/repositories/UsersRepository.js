@@ -1,7 +1,6 @@
 const mongo = require('../../../infra/database/mongoose');
 
 class UsersRepository {
-  // eslint-disable-next-line class-methods-use-this
   async add(data) {
     const user = await mongo
       .collection('users')
@@ -9,8 +8,6 @@ class UsersRepository {
       .then(result => {
         return result;
       });
-
-    delete user.ops[0].password;
 
     const userFormatted = {
       id: user.ops[0]._id,
@@ -23,7 +20,6 @@ class UsersRepository {
     return userFormatted;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async findByEmail(email) {
     const user = await mongo
       .collection('users')
@@ -31,6 +27,7 @@ class UsersRepository {
       .then(result => {
         return result;
       });
+
     const userFormatted = {
       id: user._id,
       ...user,

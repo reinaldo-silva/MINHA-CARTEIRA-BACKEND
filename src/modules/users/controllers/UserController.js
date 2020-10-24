@@ -1,32 +1,34 @@
-const SingUpService = require('../services/SingUpServices');
+const SignUpService = require('../service/SignUpService');
 const UsersRepository = require('../repositories/UsersRepository');
 const BcryptProvider = require('../providers/HashProvider/implementations/Bcrypt');
 
 class UserController {
-  async create(req, res) {
-    const { name, email, password, password_confirm } = req.body;
+  async create(request, response) {
+    const { name, email, password, password_confirm } = request.body;
 
-    if (!name) return res.json({ message: 'name is required' });
-    if (!email) return res.json({ message: 'email is required' });
+    if (!name) return response.json({ message: 'name is required' });
 
-    if (!password) return res.json({ message: 'password is required' });
+    if (!email) return response.json({ message: 'email is required' });
+
+    if (!password) return response.json({ message: 'password is required' });
+
     if (!password_confirm)
-      return res.json({ message: 'password_confirm is required' });
+      return response.json({ message: 'password_confirm is required' });
 
     if (password !== password_confirm)
-      return res.json({ message: 'password not match' });
+      return response.json({ message: 'password not match' });
 
     const usersRepository = new UsersRepository();
     const bcryptProvider = new BcryptProvider();
-    const singUpServices = new SingUpService(usersRepository, bcryptProvider);
+    const signUpService = new SignUpService(usersRepository, bcryptProvider);
 
-    const user = await singUpServices.execute({
+    const user = await signUpService.execute({
       name,
       email,
       password,
     });
 
-    return res.json(user);
+    return response.json(user);
   }
 }
 

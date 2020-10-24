@@ -1,8 +1,8 @@
-const HashProvider = require('../providers/HashProvider/models/HashProviderModels');
 const UsersRepositoryFake = require('../repositories/UsersRepositoryFake');
-const SingUpService = require('./SingUpServices');
+const HashProvider = require('../providers/HashProvider/model/HashProviderModel');
+const SignUpService = require('./SignUpService');
 
-describe('SingUpService', () => {
+describe('SignUpService', () => {
   test('should be able to create a new user', async () => {
     const data = {
       name: 'any_user',
@@ -10,11 +10,11 @@ describe('SingUpService', () => {
       password: 'any_password',
     };
 
-    const userRepositopryFake = new UsersRepositoryFake();
+    const usersRepositoryFake = new UsersRepositoryFake();
     const hashProvider = new HashProvider();
-    const singUpServices = new SingUpService(userRepositopryFake, hashProvider);
+    const signUpService = new SignUpService(usersRepositoryFake, hashProvider);
 
-    const user = await singUpServices.execute(data);
+    const user = await signUpService.execute(data);
 
     expect(user).toHaveProperty('id');
   });
@@ -26,11 +26,11 @@ describe('SingUpService', () => {
       password: 'any_password',
     };
 
-    const userRepositopryFake = new UsersRepositoryFake();
+    const usersRepositoryFake = new UsersRepositoryFake();
     const hashProvider = new HashProvider();
-    const singUpServices = new SingUpService(userRepositopryFake, hashProvider);
+    const signUpService = new SignUpService(usersRepositoryFake, hashProvider);
 
-    const user = await singUpServices.execute(data);
+    const user = await signUpService.execute(data);
 
     expect(user).toHaveProperty('error');
   });

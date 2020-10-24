@@ -2,16 +2,8 @@
   "name": "minha-carteira-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Reinaldo Silva <reinaldo.silva.jr@outlook.com>",
-  "license": "MIT",
-  "dependencies": {
-    "bcrypt": "^5.0.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.10.3"
-  },
   "scripts": {
     "start": "nodemon ./src/infra/http/server.js",
-    "jest": "jest --init",
     "test": "jest --watchAll",
     "test:commit": "jest --passWithNoTests --findRelatedTests",
     "test:report": "jest --coverage"
@@ -24,9 +16,21 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "git add",
-      "yarn test:commit"
+      "npm run test:commit",
+      "git add"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodrigorgtic/minha-carteira-backend.git"
+  },
+  "author": "Rodrigo Gonçalves Santana",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.3"
   },
   "devDependencies": {
     "eslint": "^7.8.1",
@@ -37,7 +41,6 @@
     "husky": "^4.3.0",
     "jest": "^26.4.2",
     "lint-staged": "^10.3.0",
-    "nodemon": "^2.0.4",
     "prettier": "^2.1.1"
   }
 }

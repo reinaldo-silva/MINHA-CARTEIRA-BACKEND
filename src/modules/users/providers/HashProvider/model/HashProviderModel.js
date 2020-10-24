@@ -1,7 +1,7 @@
-class HashProviderModels {
+class HashProviderModel {
   // eslint-disable-next-line
   async hash(password, salt) {
-    return 'any_hash';
+    return 'any_password';
   }
 
   async compare(password, passwordHashed) {
@@ -9,4 +9,4 @@ class HashProviderModels {
   }
 }
 
-module.exports = HashProviderModels;
+module.exports = HashProviderModel;
