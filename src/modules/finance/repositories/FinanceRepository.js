@@ -34,6 +34,8 @@ class FinanceRepository {
       .collection('moviments')
       .findOne({ _id: mongoose.Types.ObjectId(id) });
 
+    console.log(id);
+
     return moviment;
   }
 

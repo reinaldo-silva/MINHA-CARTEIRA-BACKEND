@@ -18,7 +18,7 @@ class MovimentController {
     const movimentRegister = new MovimentRegister(repository);
     const finance = await movimentRegister.execute({
       ...request.body,
-      user_id: request.user_id.sub,
+      user_id: request.user.id.sub,
     });
 
     return response.json(finance);
