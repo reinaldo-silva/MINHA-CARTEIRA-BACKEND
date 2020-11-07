@@ -1,9 +1,10 @@
 // const { sign } = require('jsonwebtoken');
 
 class SignInService {
-  constructor(usersRepository, cryptProvider) {
+  constructor(usersRepository, cryptProvider, tokenProvider) {
     this.usersRepository = usersRepository;
     this.cryptProvider = cryptProvider;
+    this.tokenProvider = tokenProvider;
   }
 
   async execute(data) {
@@ -28,7 +29,9 @@ class SignInService {
 
     delete user.password;
 
-    return user;
+    const token = this.tokenProvider.generate(user.id);
+
+    return { user, token };
   }
 }
 

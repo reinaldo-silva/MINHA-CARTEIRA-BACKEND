@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const mongo = require('../../../infra/database/mongoose');
 
 class FinanceRepository {
@@ -14,6 +15,29 @@ class FinanceRepository {
 
     return movimentFormatted;
   }
+
+  async movimentsByUser(id, type, frequency) {
+    const moviments = await mongo
+      .collection('moviments')
+      .find({
+        user_id: { $eq: id },
+        type: { $eq: type },
+        frequency: { $eq: frequency },
+      })
+      .toArray();
+
+    return moviments;
+  }
+
+  async movimentById(id) {
+    const moviment = await mongo
+      .collection('moviments')
+      .findOne({ _id: mongoose.Types.ObjectId(id) });
+
+    return moviment;
+  }
+
+  /*   async movimentRemove(id) {} */
 }
 
 module.exports = FinanceRepository;
