@@ -10,7 +10,6 @@ class FinanceRepository {
       ...moviment.ops[0],
     };
 
-    delete movimentFormatted.password;
     delete movimentFormatted._id;
 
     return movimentFormatted;
@@ -34,12 +33,14 @@ class FinanceRepository {
       .collection('moviments')
       .findOne({ _id: mongoose.Types.ObjectId(id) });
 
-    console.log(id);
-
     return moviment;
   }
 
-  /*   async movimentRemove(id) {} */
+  async movimentRemove(id) {
+    await mongo
+      .collection('moviments')
+      .deleteOne({ _id: mongoose.Types.ObjectId(id) });
+  }
 }
 
 module.exports = FinanceRepository;

@@ -1,5 +1,3 @@
-// const { sign } = require('jsonwebtoken');
-
 class SignInService {
   constructor(usersRepository, cryptProvider, tokenProvider) {
     this.usersRepository = usersRepository;
